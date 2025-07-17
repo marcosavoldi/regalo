@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,12 +13,132 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 50%, #ff9ff3 100%);
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a40 30%, #2d2d5a 60%, #4a4a7a 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a40 50%, #2d2d5a 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+
+        .airplane-loader {
+            position: relative;
+            width: 100px;
+            height: 40px;
+            margin-bottom: 30px;
+        }
+
+        .airplane {
+            font-size: 3em;
+            color: #ffd700;
+            animation: fly-loader 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px #ffd700);
+        }
+
+        @keyframes fly-loader {
+            0%, 100% { transform: translateX(-20px) rotate(-5deg); }
+            50% { transform: translateX(20px) rotate(5deg); }
+        }
+
+        .loading-text {
+            color: #ffd700;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-shadow: 0 0 20px #ffd700;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Stelle di sfondo */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* Particelle fluttuanti */
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .particle {
+            position: absolute;
+            animation: float 8s linear infinite;
+        }
+
+        .particle.plane {
+            font-size: 1.2em;
+            color: #87ceeb;
+            filter: drop-shadow(0 0 10px #87ceeb);
+        }
+
+        .particle.star {
+            font-size: 1em;
+            color: #ffd700;
+            filter: drop-shadow(0 0 8px #ffd700);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         .container {
@@ -27,35 +146,30 @@
             padding: 20px;
             max-width: 600px;
             width: 100%;
+            position: relative;
+            z-index: 3;
         }
 
         .title {
-            color: white;
+            color: #ffd700;
             font-size: 2.5em;
             margin-bottom: 30px;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+            text-shadow: 0 0 30px #ffd700;
             opacity: 0;
             animation: fadeInUp 1s ease-out 0.5s forwards;
         }
 
         .heart {
-            color: #ffeb3b;
+            color: #ff69b4;
             animation: heartbeat 1.5s ease-in-out infinite;
             display: inline-block;
+            filter: drop-shadow(0 0 15px #ff69b4);
         }
 
         @keyframes heartbeat {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.2);
-            }
-
-            100% {
-                transform: scale(1);
-            }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
 
         @keyframes fadeInUp {
@@ -63,7 +177,6 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -78,21 +191,32 @@
             cursor: pointer;
             opacity: 0;
             animation: fadeInUp 1s ease-out 1s forwards;
+            transition: all 0.3s ease;
+        }
+
+        .gift-box.shake {
+            animation: shake 0.5s ease-in-out infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
         }
 
         .box {
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, #ffd700, #ffed4a);
+            background: linear-gradient(45deg, #4169e1, #6495ed);
             border-radius: 15px;
             position: relative;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4), 0 0 30px rgba(65, 105, 225, 0.3);
             transition: all 0.3s ease;
         }
 
         .box:hover {
             transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 40px rgba(65, 105, 225, 0.5);
         }
 
         .ribbon-horizontal {
@@ -101,9 +225,9 @@
             left: 0;
             width: 100%;
             height: 25px;
-            background: linear-gradient(45deg, #e74c3c, #ff6b6b);
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
             transform: translateY(-50%);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
         .ribbon-vertical {
@@ -112,9 +236,9 @@
             top: 0;
             width: 25px;
             height: 100%;
-            background: linear-gradient(45deg, #e74c3c, #ff6b6b);
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
             transform: translateX(-50%);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
         .bow {
@@ -124,9 +248,10 @@
             transform: translateX(-50%);
             width: 50px;
             height: 35px;
-            background: #27ae60;
+            background: #32cd32;
             border-radius: 50px 50px 0 0;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            filter: drop-shadow(0 0 15px #32cd32);
         }
 
         .bow::before,
@@ -135,7 +260,7 @@
             position: absolute;
             width: 25px;
             height: 20px;
-            background: #27ae60;
+            background: #32cd32;
             border-radius: 50px;
             top: 7px;
         }
@@ -163,47 +288,39 @@
             position: absolute;
             width: 6px;
             height: 6px;
-            background: #ffeb3b;
+            background: #ffd700;
             border-radius: 50%;
             animation: sparkle 2s linear infinite;
+            filter: drop-shadow(0 0 10px #ffd700);
         }
 
         @keyframes sparkle {
-            0% {
-                opacity: 0;
-                transform: scale(0) rotate(0deg);
-            }
-
-            50% {
-                opacity: 1;
-                transform: scale(1) rotate(180deg);
-            }
-
-            100% {
-                opacity: 0;
-                transform: scale(0) rotate(360deg);
-            }
+            0% { opacity: 0; transform: scale(0) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1) rotate(180deg); }
+            100% { opacity: 0; transform: scale(0) rotate(360deg); }
         }
 
         .open-btn {
-            background: linear-gradient(45deg, #e74c3c, #ff6b6b);
-            border: none;
-            color: white;
+            background: linear-gradient(45deg, #4169e1, #6495ed);
+            border: 2px solid #ffd700;
+            color: #ffd700;
             padding: 18px 35px;
-            font-size: 1.3em;
+            font-size: 1.1em;
             font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
             margin-top: 30px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3), 0 0 20px rgba(255, 215, 0, 0.3);
             transition: all 0.3s ease;
             opacity: 0;
             animation: fadeInUp 1s ease-out 1.5s forwards;
+            text-shadow: 0 0 15px #ffd700;
         }
 
         .open-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4), 0 0 30px rgba(255, 215, 0, 0.5);
+            background: linear-gradient(45deg, #6495ed, #4169e1);
         }
 
         .gift-opened {
@@ -211,25 +328,17 @@
         }
 
         @keyframes giftOpen {
-            0% {
-                transform: scale(1) rotate(0deg);
-            }
-
-            50% {
-                transform: scale(1.2) rotate(10deg);
-            }
-
-            100% {
-                transform: scale(0) rotate(360deg);
-                opacity: 0;
-            }
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(10deg); }
+            100% { transform: scale(0) rotate(360deg); opacity: 0; }
         }
 
         .ticket-card {
-            background: white;
+            background: linear-gradient(145deg, #ffffff, #f0f8ff);
+            border: 2px solid #ffd700;
             border-radius: 25px;
             padding: 40px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3), 0 0 30px rgba(255, 215, 0, 0.2);
             margin: 20px auto;
             max-width: 550px;
             opacity: 0;
@@ -246,7 +355,7 @@
             left: 0;
             right: 0;
             height: 5px;
-            background: linear-gradient(90deg, #ff6b6b, #e74c3c, #ff6b6b);
+            background: linear-gradient(90deg, #4169e1, #ffd700, #4169e1);
         }
 
         .ticket-card.show {
@@ -272,68 +381,48 @@
         .plane-icon {
             font-size: 2.5em;
             animation: fly 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px #4169e1);
         }
 
         .argentina-flag {
             font-size: 2em;
             animation: wave 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px #87ceeb);
         }
 
         @keyframes fly {
-
-            0%,
-            100% {
-                transform: translateX(0) rotate(0deg);
-            }
-
-            50% {
-                transform: translateX(15px) rotate(5deg);
-            }
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            50% { transform: translateX(15px) rotate(5deg); }
         }
 
         @keyframes wave {
-
-            0%,
-            100% {
-                transform: rotate(0deg);
-            }
-
-            25% {
-                transform: rotate(5deg);
-            }
-
-            75% {
-                transform: rotate(-5deg);
-            }
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
         }
 
         .ticket-title {
             font-size: 1.8em;
-            color: #e74c3c;
+            color: #1a1a40;
             font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
             line-height: 1.2;
         }
 
-        .destination {
+        .morphing-text {
             font-size: 3em;
-            color: #ff6b6b;
+            color: #4169e1;
             font-weight: bold;
             margin: 25px 0;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
-            animation: pulse 2s ease-in-out infinite;
+            text-shadow: 0 0 30px #4169e1;
+            animation: morph 4s ease-in-out infinite;
         }
 
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.05);
-            }
+        @keyframes morph {
+            0%, 100% { transform: scale(1) rotateY(0deg); }
+            25% { transform: scale(1.1) rotateY(5deg); }
+            50% { transform: scale(1.05) rotateY(-5deg); }
+            75% { transform: scale(1.1) rotateY(5deg); }
         }
 
         .journey-visual {
@@ -343,241 +432,37 @@
             gap: 25px;
             margin: 30px 0;
             padding: 25px;
-            background: linear-gradient(45deg, #ff6b6b, #e74c3c);
+            background: linear-gradient(45deg, #4169e1, #6495ed);
             border-radius: 20px;
             color: white;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
         .city {
             font-size: 1.8em;
             font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .arrow {
             font-size: 2.5em;
             animation: bounce 1s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px #ffd700);
         }
 
         @keyframes bounce {
-
-            0%,
-            100% {
-                transform: translateX(0);
-            }
-
-            50% {
-                transform: translateX(8px);
-            }
-        }
-
-        .info-section {
-            margin: 25px 0;
-            padding: 20px;
-            background: linear-gradient(45deg, #fff5f5, #ffe8e8);
-            border-radius: 15px;
-            border-left: 5px solid #ff6b6b;
-        }
-
-        .info-text {
-            color: #666;
-            font-size: 1.1em;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .emoji-row {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            font-size: 1.5em;
-            margin: 20px 0;
-        }
-
-        .emoji {
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        .emoji:nth-child(1) {
-            animation-delay: 0s;
-        }
-
-        .emoji:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .emoji:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        .emoji:nth-child(4) {
-            animation-delay: 0.6s;
-        }
-
-        .emoji:nth-child(5) {
-            animation-delay: 0.8s;
-        }
-
-        .details-btn {
-            background: linear-gradient(45deg, #4ecdc4, #44a08d);
-            border: none;
-            color: white;
-            padding: 12px 25px;
-            font-size: 1em;
-            border-radius: 25px;
-            cursor: pointer;
-            margin: 10px 5px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .details-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .continue-btn {
-            background: linear-gradient(45deg, #ff6b6b, #e74c3c);
-            border: none;
-            color: white;
-            padding: 18px 35px;
-            font-size: 1.2em;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            margin-top: 25px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            opacity: 0;
-            display: none;
-        }
-
-        .continue-btn.show {
-            display: inline-block;
-            animation: fadeInUp 1s ease-out 1s forwards;
-        }
-
-        .continue-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 30px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 500px;
-            max-height: 85vh;
-            overflow-y: auto;
-            position: relative;
-            animation: slideIn 0.3s ease-out;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .close:hover {
-            color: #ff6b6b;
-        }
-
-        .modal-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .modal-title {
-            color: #e74c3c;
-            font-size: 1.8em;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .flight-details {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .detail-item {
-            text-align: center;
-            padding: 15px;
-            background: linear-gradient(45deg, #fff5f5, #ffe8e8);
-            border-radius: 10px;
-            border: 2px solid #ffebee;
-            transition: all 0.3s ease;
-        }
-
-        .detail-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .detail-label {
-            font-weight: bold;
-            color: #666;
-            font-size: 0.9em;
-            margin-bottom: 5px;
-        }
-
-        .detail-value {
-            font-size: 1.1em;
-            color: #e74c3c;
-            font-weight: bold;
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(8px); }
         }
 
         .countdown-container {
-            background: linear-gradient(135deg, #ff6b6b, #e74c3c);
+            background: linear-gradient(135deg, #4169e1, #6495ed);
+            border: 2px solid #ffd700;
             border-radius: 20px;
             padding: 25px;
             margin: 25px 0;
             color: white;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3), 0 0 20px rgba(255, 215, 0, 0.2);
             opacity: 0;
             transform: translateY(20px);
             display: none;
@@ -600,6 +485,7 @@
             font-weight: bold;
             margin-bottom: 15px;
             text-align: center;
+            text-shadow: 0 0 20px #ffd700;
         }
 
         .countdown-display {
@@ -611,11 +497,11 @@
 
         .countdown-item {
             text-align: center;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255,255,255,0.2);
             border-radius: 10px;
             padding: 12px 8px;
             backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255,255,255,0.3);
         }
 
         .countdown-number {
@@ -623,7 +509,7 @@
             font-weight: bold;
             display: block;
             margin-bottom: 5px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 0 15px #ffd700;
         }
 
         .countdown-label {
@@ -633,65 +519,81 @@
             letter-spacing: 1px;
         }
 
-        .floating-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1000;
+        .countdown-seconds {
+            text-align: center;
+            background: rgba(255,255,255,0.3);
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 10px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.4);
         }
 
-        .heart-float {
-            position: absolute;
-            color: #ff6b6b;
-            font-size: 1.5em;
-            animation: floatUp 3s ease-out forwards;
+        .countdown-seconds .countdown-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            text-shadow: 0 0 20px #ffd700;
+            animation: pulse 1s ease-in-out infinite;
         }
 
-        @keyframes floatUp {
-            0% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-
-            100% {
-                opacity: 0;
-                transform: translateY(-100px) scale(0.5);
-            }
+        .countdown-seconds .countdown-label {
+            font-size: 1em;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .excitement-text {
+        .info-section {
+            margin: 25px 0;
+            padding: 20px;
+            background: linear-gradient(45deg, #f0f8ff, #e6f3ff);
+            border-radius: 15px;
+            border-left: 5px solid #4169e1;
+        }
+
+        .info-text {
+            color: #1a1a40;
             font-size: 1.1em;
-            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .emoji-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 1.5em;
             margin: 20px 0;
-            animation: glow 2s ease-in-out infinite alternate;
         }
 
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 5px rgba(255, 107, 107, 0.5);
-            }
-
-            to {
-                text-shadow: 0 0 20px rgba(255, 107, 107, 0.8);
-            }
+        .emoji {
+            animation: bounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
         }
+
+        .emoji:nth-child(1) { animation-delay: 0s; }
+        .emoji:nth-child(2) { animation-delay: 0.2s; }
+        .emoji:nth-child(3) { animation-delay: 0.4s; }
+        .emoji:nth-child(4) { animation-delay: 0.6s; }
+        .emoji:nth-child(5) { animation-delay: 0.8s; }
 
         .surprise-btn {
-            background: linear-gradient(45deg, #ff6b6b, #e74c3c);
-            border: none;
-            color: white;
+            background: linear-gradient(45deg, #4169e1, #6495ed);
+            border: 2px solid #ffd700;
+            color: #ffd700;
             padding: 12px 25px;
             font-size: 1em;
+            font-weight: bold;
             border-radius: 25px;
             cursor: pointer;
             margin: 10px 5px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2), 0 0 15px rgba(255, 215, 0, 0.2);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            text-shadow: 0 0 10px #ffd700;
         }
 
         .surprise-btn::before {
@@ -701,7 +603,7 @@
             left: 50%;
             width: 0;
             height: 0;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255,255,255,0.3);
             border-radius: 50%;
             transform: translate(-50%, -50%);
             transition: width 0.3s ease, height 0.3s ease;
@@ -714,73 +616,182 @@
 
         .surprise-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3), 0 0 25px rgba(255, 215, 0, 0.4);
         }
 
-        .countdown-seconds {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 15px;
-            padding: 15px;
-            margin-top: 10px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .countdown-seconds .countdown-number {
-            font-size: 2.5em;
+        .continue-btn {
+            background: linear-gradient(45deg, #4169e1, #6495ed);
+            border: 2px solid #ffd700;
+            color: #ffd700;
+            padding: 18px 35px;
+            font-size: 1.2em;
             font-weight: bold;
-            display: block;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3), 0 0 20px rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            display: none;
+            text-shadow: 0 0 15px #ffd700;
+        }
+
+        .continue-btn.show {
+            display: inline-block;
+            animation: fadeInUp 1s ease-out 1s forwards;
+        }
+
+        .continue-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4), 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 15, 35, 0.8);
+            animation: fadeIn 0.3s ease-out;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: linear-gradient(145deg, #ffffff, #f0f8ff);
+            border: 2px solid #ffd700;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideIn 0.3s ease-out;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3), 0 0 30px rgba(255, 215, 0, 0.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close {
+            color: #6495ed;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            text-shadow: 0 0 10px #6495ed;
+        }
+
+        .close:hover {
+            color: #4169e1;
+            text-shadow: 0 0 20px #4169e1;
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            color: #1a1a40;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .flight-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .detail-item {
+            text-align: center;
+            padding: 15px;
+            background: linear-gradient(45deg, #f0f8ff, #e6f3ff);
+            border-radius: 10px;
+            border: 2px solid #e6f3ff;
+            transition: all 0.3s ease;
+        }
+
+        .detail-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: #4169e1;
+        }
+
+        .detail-label {
+            font-weight: bold;
+            color: #666;
+            font-size: 0.9em;
             margin-bottom: 5px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            animation: pulse 1s ease-in-out infinite;
         }
 
-        .countdown-seconds .countdown-label {
-            font-size: 1em;
-            opacity: 0.9;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .detail-value {
+            font-size: 1.1em;
+            color: #1a1a40;
+            font-weight: bold;
         }
 
-        @media (max-width: 768px) {
-            .countdown-display {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 8px;
-            }
+        .hidden {
+            display: none;
+        }
 
-            .countdown-number {
-                font-size: 1.5em;
-            }
-
-            .countdown-item {
-                padding: 10px 5px;
-            }
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
         }
 
         @media (max-width: 768px) {
             .title {
                 font-size: 2em;
             }
-
+            
             .gift-box {
                 width: 150px;
                 height: 150px;
             }
-
+            
             .flight-details {
                 grid-template-columns: 1fr;
             }
-
+            
             .journey-visual {
                 flex-direction: column;
                 gap: 15px;
             }
-
+            
             .city {
                 font-size: 1.5em;
             }
-
+            
+            .countdown-display {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            
+            .countdown-number {
+                font-size: 1.5em;
+            }
+            
+            .countdown-item {
+                padding: 10px 5px;
+            }
+            
             .modal-content {
                 margin: 10% auto;
                 padding: 20px;
@@ -788,12 +799,25 @@
         }
     </style>
 </head>
-
 <body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="airplane-loader">
+            <div class="airplane">✈️</div>
+        </div>
+        <div class="loading-text">Preparando il tuo regalo...</div>
+    </div>
+
+    <!-- Stelle di sfondo -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Particelle fluttuanti -->
+    <div class="floating-particles" id="floatingParticles"></div>
+
     <div class="container">
         <div id="gift-screen">
             <h1 class="title">Buon Compleanno Amore <span class="heart">❤️</span></h1>
-
+            
             <div class="gift-box" id="giftBox">
                 <div class="box">
                     <div class="ribbon-horizontal"></div>
@@ -809,8 +833,8 @@
                     </div>
                 </div>
             </div>
-
-            <button class="open-btn" id="openBtn">🎁 Apri il regalo</button>
+            
+            <button class="open-btn" id="openBtn">📱 SCUOTI IL TELEFONO PER APRIRE IL REGALO</button>
         </div>
 
         <div class="ticket-card" id="ticketCard">
@@ -819,7 +843,9 @@
                 <div class="argentina-flag">🇦🇷</div>
                 <div class="ticket-title">Ce ne andiamo in<br>ARGENTINA!</div>
             </div>
-
+            
+            <div class="morphing-text">ARGENTINA</div>
+            
             <div class="journey-visual">
                 <div class="city">Milano 🇮🇹</div>
                 <div class="arrow">→</div>
@@ -851,10 +877,10 @@
                     <span class="countdown-label">Secondi</span>
                 </div>
             </div>
-
+            
             <div class="info-section">
                 <div class="info-text">
-                    🌟 <strong>16 giorni</strong> tra ghiacciai della Patagonia, montagne,
+                    🌟 <strong>16 giorni</strong> tra ghiacciai della Patagonia, montagne, 
                     vigneti del nord e tango argentino!
                 </div>
                 <div class="emoji-row">
@@ -865,12 +891,12 @@
                     <span class="emoji">❄️</span>
                 </div>
             </div>
-
+            
             <div style="margin: 20px 0;">
                 <button class="surprise-btn" id="detailsBtn">📋 Dettagli del Volo</button>
                 <button class="surprise-btn" id="highlightsBtn">🎯 Highlights del Viaggio</button>
             </div>
-
+            
             <button class="continue-btn" id="continueBtn">🗺️ Scopri il viaggio</button>
         </div>
     </div>
@@ -883,7 +909,7 @@
                 <div class="modal-title">✈️ Dettagli del Volo</div>
                 <div style="color: #666; font-size: 0.9em;">Il nostro viaggio da sogno</div>
             </div>
-
+            
             <div class="flight-details">
                 <div class="detail-item">
                     <div class="detail-label">🛫 PARTENZA</div>
@@ -910,7 +936,7 @@
                     <div class="detail-value">Inclusi</div>
                 </div>
             </div>
-
+            
             <div style="text-align: center; margin-top: 20px; color: #666; font-style: italic;">
                 Codice prenotazione: AGUTMO 🎫
             </div>
@@ -925,25 +951,27 @@
                 <div class="modal-title">🎯 Highlights del Viaggio</div>
                 <div style="color: #666; font-size: 0.9em;">Le nostre avventure</div>
             </div>
-
+            
             <div style="text-align: left; line-height: 1.8;">
                 <p style="margin: 15px 0;"><strong>🏔️ Patagonia Epica:</strong><br>
-                    Ghiacciaio Perito Moreno, Fitz Roy, Torres del Paine</p>
-
+                Ghiacciaio Perito Moreno, Fitz Roy, Torres del Paine</p>
+                
                 <p style="margin: 15px 0;"><strong>🍷 Wine Experience:</strong><br>
-                    Salta, Cafayate, degustazioni di Torrontés</p>
-
+                Salta, Cafayate, degustazioni di Torrontés</p>
+                
                 <p style="margin: 15px 0;"><strong>💃 Buenos Aires:</strong><br>
-                    Tango, asado, cultura argentina autentica</p>
-
+                Tango, asado, cultura argentina autentica</p>
+                
                 <p style="margin: 15px 0;"><strong>🚗 Road Trip:</strong><br>
-                    Libertà totale con auto a noleggio</p>
-
+                Libertà totale con auto a noleggio</p>
+                
                 <p style="margin: 15px 0;"><strong>🦙 Wildlife:</strong><br>
-                    Guanachi, condor, nandù nella pampa</p>
+                Guanachi, condor, nandù nella pampa</p>
             </div>
-
-
+            
+            <div style="text-align: center; margin-top: 20px; font-size: 1.2em;">
+                🌟 Un viaggio che ricorderemo per sempre! 🌟
+            </div>
         </div>
     </div>
 
@@ -954,7 +982,7 @@
             <div class="modal-header">
                 <div class="modal-title">🚧 Work in Progress</div>
             </div>
-
+            
             <div style="text-align: center; padding: 20px;">
                 <div style="font-size: 4em; margin-bottom: 20px;">⏳</div>
                 <p style="font-size: 1.2em; color: #666; line-height: 1.6; margin-bottom: 15px;">
@@ -962,16 +990,61 @@
                 </p>
                 <p style="font-size: 1.1em; color: #888; line-height: 1.6;">
                     Ancora non ho organizzato tutto.<br>
-                    Seguono aggiornamenti!
+                    Seguono aggiornamenti! 
                 </p>
                 <div style="font-size: 2em; margin-top: 20px;">😊✈️</div>
             </div>
         </div>
     </div>
 
-    <div class="floating-hearts" id="floatingHearts"></div>
-
     <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('preloader').classList.add('hidden');
+            }, 2000);
+        });
+
+        // Crea stelle di sfondo
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Crea particelle fluttuanti
+        function createFloatingParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            // Alterna tra aeroplani e stelle
+            if (Math.random() < 0.3) {
+                particle.classList.add('plane');
+                particle.innerHTML = '✈️';
+            } else {
+                particle.classList.add('star');
+                particle.innerHTML = '⭐';
+            }
+            
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            
+            document.getElementById('floatingParticles').appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 10000);
+        }
+
+        // Elementi DOM
         const giftBox = document.getElementById('giftBox');
         const openBtn = document.getElementById('openBtn');
         const giftScreen = document.getElementById('gift-screen');
@@ -988,109 +1061,100 @@
         const closeComingSoonModal = document.getElementById('closeComingSoonModal');
 
         // Data di partenza: 27 Febbraio 2026 alle 12:00
-        const departureDate = new Date(2026, 1, 27, 12, 0, 0); // Mese è 0-indexed
+        const departureDate = new Date(2026, 1, 27, 12, 0, 0);
+
+        // Shake detection
+        let shakeThreshold = 15;
+        let lastUpdate = 0;
+        let lastX = 0, lastY = 0, lastZ = 0;
+
+        function handleDeviceMotion(event) {
+            const currentTime = new Date().getTime();
+            
+            if ((currentTime - lastUpdate) > 100) {
+                const timeDifference = currentTime - lastUpdate;
+                lastUpdate = currentTime;
+                
+                const x = event.accelerationIncludingGravity.x;
+                const y = event.accelerationIncludingGravity.y;
+                const z = event.accelerationIncludingGravity.z;
+                
+                const speed = Math.abs(x + y + z - lastX - lastY - lastZ) / timeDifference * 10000;
+                
+                if (speed > shakeThreshold) {
+                    if (giftScreen.style.display !== 'none') {
+                        openGift();
+                    }
+                }
+                
+                lastX = x;
+                lastY = y;
+                lastZ = z;
+            }
+        }
+
+        function openGift() {
+            giftBox.classList.add('gift-opened');
+            openBtn.style.display = 'none';
+            
+            setTimeout(() => {
+                giftScreen.style.display = 'none';
+                ticketCard.classList.add('show');
+                countdownContainer.classList.add('show');
+                
+                // Avvia il countdown
+                updateCountdown();
+                setInterval(updateCountdown, 1000);
+                
+                setTimeout(() => {
+                    continueBtn.classList.add('show');
+                }, 2000);
+            }, 1000);
+        }
 
         function updateCountdown() {
             const now = new Date();
             const timeDiff = departureDate - now;
-
+            
             if (timeDiff > 0) {
                 const months = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 30.44));
                 const days = Math.floor((timeDiff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-
+                
                 document.getElementById('months').textContent = months;
                 document.getElementById('days').textContent = days;
                 document.getElementById('hours').textContent = hours;
                 document.getElementById('minutes').textContent = minutes;
                 document.getElementById('seconds').textContent = seconds;
-            } else {
-                document.getElementById('months').textContent = '0';
-                document.getElementById('days').textContent = '0';
-                document.getElementById('hours').textContent = '0';
-                document.getElementById('minutes').textContent = '0';
-                document.getElementById('seconds').textContent = '0';
             }
         }
 
-        function createFloatingHeart() {
-            const heart = document.createElement('div');
-            heart.className = 'heart-float';
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + '%';
-            heart.style.bottom = '0px';
+        // Event listeners
+        openBtn.addEventListener('click', openGift);
 
-            document.getElementById('floatingHearts').appendChild(heart);
-
-            setTimeout(() => {
-                heart.remove();
-            }, 3000);
-        }
-
-        function showHeartRain() {
-            for (let i = 0; i < 20; i++) {
-                setTimeout(() => {
-                    createFloatingHeart();
-                }, i * 100);
-            }
-        }
-
-        openBtn.addEventListener('click', function () {
-            giftBox.classList.add('gift-opened');
-            openBtn.style.display = 'none';
-
-            setTimeout(() => {
-                giftScreen.style.display = 'none';
-                ticketCard.classList.add('show');
-                countdownContainer.classList.add('show');
-
-                // Avvia il countdown
-                updateCountdown();
-                setInterval(updateCountdown, 1000); // Aggiorna ogni secondo
-
-                setTimeout(() => {
-                    continueBtn.classList.add('show');
-                }, 2000);
-            }, 1000);
-        });
-
-        openBtn.addEventListener('click', function () {
-            giftBox.classList.add('gift-opened');
-            openBtn.style.display = 'none';
-
-            setTimeout(() => {
-                giftScreen.style.display = 'none';
-                ticketCard.classList.add('show');
-
-                setTimeout(() => {
-                    continueBtn.classList.add('show');
-                }, 2000);
-            }, 1000);
-        });
-
-        detailsBtn.addEventListener('click', function () {
+        detailsBtn.addEventListener('click', function() {
             flightModal.style.display = 'block';
         });
 
-        highlightsBtn.addEventListener('click', function () {
+        highlightsBtn.addEventListener('click', function() {
             highlightsModal.style.display = 'block';
         });
 
-        closeModal.addEventListener('click', function () {
+        closeModal.addEventListener('click', function() {
             flightModal.style.display = 'none';
         });
 
-        closeHighlightsModal.addEventListener('click', function () {
+        closeHighlightsModal.addEventListener('click', function() {
             highlightsModal.style.display = 'none';
         });
 
-        closeComingSoonModal.addEventListener('click', function () {
+        closeComingSoonModal.addEventListener('click', function() {
             comingSoonModal.style.display = 'none';
         });
 
-        window.addEventListener('click', function (event) {
+        window.addEventListener('click', function(event) {
             if (event.target === flightModal) {
                 flightModal.style.display = 'none';
             }
@@ -1102,9 +1166,45 @@
             }
         });
 
-        continueBtn.addEventListener('click', function () {
+        continueBtn.addEventListener('click', function() {
             comingSoonModal.style.display = 'block';
         });
+
+        // Richiedi permesso per DeviceMotion su iOS
+        if (typeof DeviceMotionEvent.requestPermission === 'function') {
+            openBtn.addEventListener('click', function() {
+                DeviceMotionEvent.requestPermission().then(response => {
+                    if (response === 'granted') {
+                        window.addEventListener('devicemotion', handleDeviceMotion);
+                    }
+                });
+            });
+        } else {
+            window.addEventListener('devicemotion', handleDeviceMotion);
+        }
+
+        // Effetto shake visivo
+        let shakeDetected = false;
+        window.addEventListener('devicemotion', function(event) {
+            if (!shakeDetected) {
+                const acceleration = event.accelerationIncludingGravity;
+                const totalAcceleration = Math.abs(acceleration.x) + Math.abs(acceleration.y) + Math.abs(acceleration.z);
+                
+                if (totalAcceleration > 20) {
+                    shakeDetected = true;
+                    giftBox.classList.add('shake');
+                    
+                    setTimeout(() => {
+                        giftBox.classList.remove('shake');
+                        shakeDetected = false;
+                    }, 500);
+                }
+            }
+        });
+
+        // Inizializza stelle e particelle
+        createStars();
+        setInterval(createFloatingParticle, 2000);
 
         // Effetto sparkle migliorato
         function createSparkle() {
@@ -1113,48 +1213,34 @@
             sparkle.style.top = Math.random() * 100 + '%';
             sparkle.style.left = Math.random() * 100 + '%';
             sparkle.style.animationDelay = Math.random() * 2 + 's';
-
+            
             document.querySelector('.sparkles').appendChild(sparkle);
-
+            
             setTimeout(() => {
                 sparkle.remove();
             }, 2000);
         }
 
-        // Crea sparkle ogni secondo
         setInterval(createSparkle, 800);
 
-        // Aggiungi effetto di typing per il testo emozionante
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.innerHTML = '';
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            type();
-        }
-
-        // Effetto casuale di scintille quando si muove il mouse
-        document.addEventListener('mousemove', function (e) {
-            if (Math.random() < 0.02) { // 2% di probabilità
+        // Effetto scintille al movimento del mouse
+        document.addEventListener('mousemove', function(e) {
+            if (Math.random() < 0.02) {
                 const sparkle = document.createElement('div');
                 sparkle.style.position = 'fixed';
                 sparkle.style.left = e.clientX + 'px';
                 sparkle.style.top = e.clientY + 'px';
-                sparkle.style.width = '6px';
-                sparkle.style.height = '6px';
+                sparkle.style.width = '4px';
+                sparkle.style.height = '4px';
                 sparkle.style.background = '#ffd700';
                 sparkle.style.borderRadius = '50%';
                 sparkle.style.pointerEvents = 'none';
                 sparkle.style.animation = 'sparkle 1s linear forwards';
                 sparkle.style.zIndex = '9999';
-
+                sparkle.style.filter = 'drop-shadow(0 0 8px #ffd700)';
+                
                 document.body.appendChild(sparkle);
-
+                
                 setTimeout(() => {
                     sparkle.remove();
                 }, 1000);
@@ -1162,5 +1248,4 @@
         });
     </script>
 </body>
-
 </html>
