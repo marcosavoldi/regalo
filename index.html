@@ -252,6 +252,128 @@
             border-radius: 50px 50px 0 0;
             box-shadow: 0 6px 20px rgba(0,0,0,0.4);
             filter: drop-shadow(0 0 15px #32cd32);
+            cursor: grab;
+            transition: all 0.3s ease;
+        }
+
+        .bow:active {
+            cursor: grabbing;
+        }
+
+        .bow.dragging {
+            transform: translateX(-50%) scale(1.1);
+            filter: drop-shadow(0 0 25px #32cd32);
+        }
+
+        .bow.pulse {
+            animation: bowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes bowPulse {
+            0%, 100% { 
+                transform: translateX(-50%) scale(1); 
+                filter: drop-shadow(0 0 15px #32cd32);
+            }
+            50% { 
+                transform: translateX(-50%) scale(1.1); 
+                filter: drop-shadow(0 0 25px #32cd32);
+            }
+        }
+
+        .drag-hint {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 215, 0, 0.9);
+            color: #1a1a40;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            opacity: 0;
+            animation: hintPulse 3s ease-in-out infinite;
+            pointer-events: none;
+            backdrop-filter: blur(10px);
+            border: 2px solid #ffd700;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        @keyframes hintPulse {
+            0%, 70%, 100% { opacity: 0; transform: translateX(-50%) translateY(0); }
+            10%, 60% { opacity: 1; transform: translateX(-50%) translateY(-5px); }
+        }
+
+        .drag-arrow {
+            position: absolute;
+            top: -45px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5em;
+            color: #ffd700;
+            opacity: 0;
+            animation: arrowBounce 2s ease-in-out infinite;
+            pointer-events: none;
+            filter: drop-shadow(0 0 10px #ffd700);
+        }
+
+        @keyframes arrowBounce {
+            0%, 70%, 100% { opacity: 0; transform: translateX(-50%) translateY(0); }
+            10%, 60% { opacity: 1; transform: translateX(-50%) translateY(-8px); }
+        }
+
+        .gift-instruction {
+            position: absolute;
+            bottom: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #4169e1, #6495ed);
+            color: #ffd700;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            border: 2px solid #ffd700;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-shadow: 0 0 10px #ffd700;
+            animation: instructionGlow 3s ease-in-out infinite;
+            pointer-events: none;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes instructionGlow {
+            0%, 100% { 
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3), 0 0 15px rgba(255, 215, 0, 0.3);
+            }
+            50% { 
+                box-shadow: 0 8px 25px rgba(0,0,0,0.4), 0 0 30px rgba(255, 215, 0, 0.6);
+            }
+        }
+
+        .hand-pointer {
+            position: absolute;
+            top: -35px;
+            left: 60%;
+            font-size: 1.8em;
+            opacity: 0;
+            animation: handPoint 4s ease-in-out infinite;
+            pointer-events: none;
+            filter: drop-shadow(0 0 10px #ffd700);
+        }
+
+        @keyframes handPoint {
+            0%, 80%, 100% { opacity: 0; transform: translateY(0); }
+            10%, 70% { opacity: 1; transform: translateY(-10px); }
+            15%, 65% { opacity: 1; transform: translateY(-15px); }
+        }
+
+        .gift-box.ready-to-drag {
+            animation: readyPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes readyPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
         }
 
         .bow::before,
@@ -822,7 +944,14 @@
                 <div class="box">
                     <div class="ribbon-horizontal"></div>
                     <div class="ribbon-vertical"></div>
-                    <div class="bow"></div>
+                    <div class="bow" id="bow">
+                        <div class="drag-hint">🎁 Tira il fiocco!</div>
+                        <div class="drag-arrow">⬆️</div>
+                        <div class="hand-pointer">👆</div>
+                    </div>
+                    <div class="gift-instruction">
+                        🎀 Trascina il fiocco verso l'alto per aprire
+                    </div>
                     <div class="sparkles">
                         <div class="sparkle" style="top: 15%; left: 15%; animation-delay: 0s;"></div>
                         <div class="sparkle" style="top: 25%; right: 15%; animation-delay: 0.5s;"></div>
@@ -834,7 +963,9 @@
                 </div>
             </div>
             
-            <button class="open-btn" id="openBtn">📱 SCUOTI IL TELEFONO PER APRIRE IL REGALO</button>
+            <div style="margin-top: 40px; color: #ffd700; font-size: 1.1em; text-shadow: 0 0 15px #ffd700;">
+                ✨ Il tuo regalo ti aspetta... ✨
+            </div>
         </div>
 
         <div class="ticket-card" id="ticketCard">
@@ -1046,7 +1177,7 @@
 
         // Elementi DOM
         const giftBox = document.getElementById('giftBox');
-        const openBtn = document.getElementById('openBtn');
+        const bow = document.getElementById('bow');
         const giftScreen = document.getElementById('gift-screen');
         const ticketCard = document.getElementById('ticketCard');
         const continueBtn = document.getElementById('continueBtn');
@@ -1063,39 +1194,15 @@
         // Data di partenza: 27 Febbraio 2026 alle 12:00
         const departureDate = new Date(2026, 1, 27, 12, 0, 0);
 
-        // Shake detection
-        let shakeThreshold = 15;
-        let lastUpdate = 0;
-        let lastX = 0, lastY = 0, lastZ = 0;
+        // Variabili per drag
+        let isDragging = false;
+        let startY = 0;
+        let currentY = 0;
+        let dragThreshold = 50; // pixel da trascinare per aprire
 
-        function handleDeviceMotion(event) {
-            const currentTime = new Date().getTime();
-            
-            if ((currentTime - lastUpdate) > 100) {
-                const timeDifference = currentTime - lastUpdate;
-                lastUpdate = currentTime;
-                
-                const x = event.accelerationIncludingGravity.x;
-                const y = event.accelerationIncludingGravity.y;
-                const z = event.accelerationIncludingGravity.z;
-                
-                const speed = Math.abs(x + y + z - lastX - lastY - lastZ) / timeDifference * 10000;
-                
-                if (speed > shakeThreshold) {
-                    if (giftScreen.style.display !== 'none') {
-                        openGift();
-                    }
-                }
-                
-                lastX = x;
-                lastY = y;
-                lastZ = z;
-            }
-        }
-
+        // Funzione per aprire il regalo
         function openGift() {
             giftBox.classList.add('gift-opened');
-            openBtn.style.display = 'none';
             
             setTimeout(() => {
                 giftScreen.style.display = 'none';
@@ -1111,6 +1218,90 @@
                 }, 2000);
             }, 1000);
         }
+
+        // Event listeners per drag (Desktop)
+        bow.addEventListener('mousedown', function(e) {
+            isDragging = true;
+            startY = e.clientY;
+            bow.classList.add('dragging');
+            bow.classList.add('pulse');
+            e.preventDefault();
+        });
+
+        document.addEventListener('mousemove', function(e) {
+            if (isDragging) {
+                currentY = e.clientY;
+                const deltaY = startY - currentY; // Inverso per trascinare verso l'alto
+                
+                if (deltaY > 0) {
+                    bow.style.transform = `translateX(-50%) translateY(${-deltaY/2}px) scale(${1 + deltaY/200})`;
+                    
+                    // Aggiungi effetto glow progressivo
+                    const glowIntensity = Math.min(deltaY / dragThreshold, 1);
+                    bow.style.filter = `drop-shadow(0 0 ${15 + glowIntensity * 20}px #32cd32)`;
+                    
+                    if (deltaY >= dragThreshold) {
+                        openGift();
+                        isDragging = false;
+                    }
+                }
+            }
+        });
+
+        document.addEventListener('mouseup', function() {
+            if (isDragging) {
+                isDragging = false;
+                bow.classList.remove('dragging');
+                bow.classList.remove('pulse');
+                bow.style.transform = 'translateX(-50%)';
+                bow.style.filter = 'drop-shadow(0 0 15px #32cd32)';
+            }
+        });
+
+        // Event listeners per drag (Mobile)
+        bow.addEventListener('touchstart', function(e) {
+            isDragging = true;
+            startY = e.touches[0].clientY;
+            bow.classList.add('dragging');
+            bow.classList.add('pulse');
+            e.preventDefault();
+        });
+
+        document.addEventListener('touchmove', function(e) {
+            if (isDragging) {
+                currentY = e.touches[0].clientY;
+                const deltaY = startY - currentY;
+                
+                if (deltaY > 0) {
+                    bow.style.transform = `translateX(-50%) translateY(${-deltaY/2}px) scale(${1 + deltaY/200})`;
+                    
+                    const glowIntensity = Math.min(deltaY / dragThreshold, 1);
+                    bow.style.filter = `drop-shadow(0 0 ${15 + glowIntensity * 20}px #32cd32)`;
+                    
+                    if (deltaY >= dragThreshold) {
+                        openGift();
+                        isDragging = false;
+                    }
+                }
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener('touchend', function() {
+            if (isDragging) {
+                isDragging = false;
+                bow.classList.remove('dragging');
+                bow.classList.remove('pulse');
+                bow.style.transform = 'translateX(-50%)';
+                bow.style.filter = 'drop-shadow(0 0 15px #32cd32)';
+            }
+        });
+
+        // Aggiungi classe ready-to-drag dopo il caricamento
+        setTimeout(() => {
+            giftBox.classList.add('ready-to-drag');
+            bow.classList.add('pulse');
+        }, 3000);
 
         function updateCountdown() {
             const now = new Date();
@@ -1132,8 +1323,6 @@
         }
 
         // Event listeners
-        openBtn.addEventListener('click', openGift);
-
         detailsBtn.addEventListener('click', function() {
             flightModal.style.display = 'block';
         });
@@ -1168,38 +1357,6 @@
 
         continueBtn.addEventListener('click', function() {
             comingSoonModal.style.display = 'block';
-        });
-
-        // Richiedi permesso per DeviceMotion su iOS
-        if (typeof DeviceMotionEvent.requestPermission === 'function') {
-            openBtn.addEventListener('click', function() {
-                DeviceMotionEvent.requestPermission().then(response => {
-                    if (response === 'granted') {
-                        window.addEventListener('devicemotion', handleDeviceMotion);
-                    }
-                });
-            });
-        } else {
-            window.addEventListener('devicemotion', handleDeviceMotion);
-        }
-
-        // Effetto shake visivo
-        let shakeDetected = false;
-        window.addEventListener('devicemotion', function(event) {
-            if (!shakeDetected) {
-                const acceleration = event.accelerationIncludingGravity;
-                const totalAcceleration = Math.abs(acceleration.x) + Math.abs(acceleration.y) + Math.abs(acceleration.z);
-                
-                if (totalAcceleration > 20) {
-                    shakeDetected = true;
-                    giftBox.classList.add('shake');
-                    
-                    setTimeout(() => {
-                        giftBox.classList.remove('shake');
-                        shakeDetected = false;
-                    }, 500);
-                }
-            }
         });
 
         // Inizializza stelle e particelle
