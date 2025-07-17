@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,8 +60,15 @@
         }
 
         @keyframes fly-loader {
-            0%, 100% { transform: translateX(-20px) rotate(-5deg); }
-            50% { transform: translateX(20px) rotate(5deg); }
+
+            0%,
+            100% {
+                transform: translateX(-20px) rotate(-5deg);
+            }
+
+            50% {
+                transform: translateX(20px) rotate(5deg);
+            }
         }
 
         .loading-text {
@@ -92,8 +100,17 @@
         }
 
         @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.5); }
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
         }
 
         /* Particelle fluttuanti */
@@ -129,12 +146,15 @@
                 transform: translateY(100vh) rotate(0deg);
                 opacity: 0;
             }
+
             10% {
                 opacity: 1;
             }
+
             90% {
                 opacity: 1;
             }
+
             100% {
                 transform: translateY(-100px) rotate(360deg);
                 opacity: 0;
@@ -148,6 +168,12 @@
             width: 100%;
             position: relative;
             z-index: 3;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .container.show {
+            opacity: 1;
         }
 
         .title {
@@ -156,7 +182,7 @@
             margin-bottom: 30px;
             text-shadow: 0 0 30px #ffd700;
             opacity: 0;
-            animation: fadeInUp 1s ease-out 0.5s forwards;
+            animation: fadeInUp 1s ease-out 0.2s forwards;
         }
 
         .heart {
@@ -167,9 +193,17 @@
         }
 
         @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
         @keyframes fadeInUp {
@@ -177,6 +211,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -190,7 +225,7 @@
             margin: 40px auto;
             cursor: pointer;
             opacity: 0;
-            animation: fadeInUp 1s ease-out 1s forwards;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
             transition: all 0.3s ease;
         }
 
@@ -199,9 +234,26 @@
         }
 
         @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-            20%, 40%, 60%, 80% { transform: translateX(5px); }
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                transform: translateX(-5px);
+            }
+
+            20%,
+            40%,
+            60%,
+            80% {
+                transform: translateX(5px);
+            }
         }
 
         .box {
@@ -210,13 +262,13 @@
             background: linear-gradient(45deg, #4169e1, #6495ed);
             border-radius: 15px;
             position: relative;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4), 0 0 30px rgba(65, 105, 225, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 30px rgba(65, 105, 225, 0.3);
             transition: all 0.3s ease;
         }
 
         .box:hover {
             transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 40px rgba(65, 105, 225, 0.5);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(65, 105, 225, 0.5);
         }
 
         .ribbon-horizontal {
@@ -227,7 +279,7 @@
             height: 25px;
             background: linear-gradient(45deg, #ffd700, #ffed4a);
             transform: translateY(-50%);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         .ribbon-vertical {
@@ -238,7 +290,7 @@
             height: 100%;
             background: linear-gradient(45deg, #ffd700, #ffed4a);
             transform: translateX(-50%);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         .bow {
@@ -250,7 +302,7 @@
             height: 35px;
             background: #32cd32;
             border-radius: 50px 50px 0 0;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
             filter: drop-shadow(0 0 15px #32cd32);
             cursor: grab;
             transition: all 0.3s ease;
@@ -270,12 +322,15 @@
         }
 
         @keyframes bowPulse {
-            0%, 100% { 
-                transform: translateX(-50%) scale(1); 
+
+            0%,
+            100% {
+                transform: translateX(-50%) scale(1);
                 filter: drop-shadow(0 0 15px #32cd32);
             }
-            50% { 
-                transform: translateX(-50%) scale(1.1); 
+
+            50% {
+                transform: translateX(-50%) scale(1.1);
                 filter: drop-shadow(0 0 25px #32cd32);
             }
         }
@@ -296,12 +351,23 @@
             pointer-events: none;
             backdrop-filter: blur(10px);
             border: 2px solid #ffd700;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         @keyframes hintPulse {
-            0%, 70%, 100% { opacity: 0; transform: translateX(-50%) translateY(0); }
-            10%, 60% { opacity: 1; transform: translateX(-50%) translateY(-5px); }
+
+            0%,
+            70%,
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            10%,
+            60% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(-5px);
+            }
         }
 
         .drag-arrow {
@@ -318,8 +384,19 @@
         }
 
         @keyframes arrowBounce {
-            0%, 70%, 100% { opacity: 0; transform: translateX(-50%) translateY(0); }
-            10%, 60% { opacity: 1; transform: translateX(-50%) translateY(-8px); }
+
+            0%,
+            70%,
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            10%,
+            60% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(-8px);
+            }
         }
 
         .gift-instruction {
@@ -334,7 +411,7 @@
             font-size: 1em;
             font-weight: bold;
             border: 2px solid #ffd700;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             text-shadow: 0 0 10px #ffd700;
             animation: instructionGlow 3s ease-in-out infinite;
             pointer-events: none;
@@ -342,11 +419,14 @@
         }
 
         @keyframes instructionGlow {
-            0%, 100% { 
-                box-shadow: 0 5px 15px rgba(0,0,0,0.3), 0 0 15px rgba(255, 215, 0, 0.3);
+
+            0%,
+            100% {
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 215, 0, 0.3);
             }
-            50% { 
-                box-shadow: 0 8px 25px rgba(0,0,0,0.4), 0 0 30px rgba(255, 215, 0, 0.6);
+
+            50% {
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 215, 0, 0.6);
             }
         }
 
@@ -362,9 +442,25 @@
         }
 
         @keyframes handPoint {
-            0%, 80%, 100% { opacity: 0; transform: translateY(0); }
-            10%, 70% { opacity: 1; transform: translateY(-10px); }
-            15%, 65% { opacity: 1; transform: translateY(-15px); }
+
+            0%,
+            80%,
+            100% {
+                opacity: 0;
+                transform: translateY(0);
+            }
+
+            10%,
+            70% {
+                opacity: 1;
+                transform: translateY(-10px);
+            }
+
+            15%,
+            65% {
+                opacity: 1;
+                transform: translateY(-15px);
+            }
         }
 
         .gift-box.ready-to-drag {
@@ -372,8 +468,15 @@
         }
 
         @keyframes readyPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
         }
 
         .bow::before,
@@ -417,9 +520,20 @@
         }
 
         @keyframes sparkle {
-            0% { opacity: 0; transform: scale(0) rotate(0deg); }
-            50% { opacity: 1; transform: scale(1) rotate(180deg); }
-            100% { opacity: 0; transform: scale(0) rotate(360deg); }
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1) rotate(180deg);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0) rotate(360deg);
+            }
         }
 
         .open-btn {
@@ -432,7 +546,7 @@
             border-radius: 50px;
             cursor: pointer;
             margin-top: 30px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3), 0 0 20px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 215, 0, 0.3);
             transition: all 0.3s ease;
             opacity: 0;
             animation: fadeInUp 1s ease-out 1.5s forwards;
@@ -441,7 +555,7 @@
 
         .open-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.4), 0 0 30px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 215, 0, 0.5);
             background: linear-gradient(45deg, #6495ed, #4169e1);
         }
 
@@ -450,9 +564,18 @@
         }
 
         @keyframes giftOpen {
-            0% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.2) rotate(10deg); }
-            100% { transform: scale(0) rotate(360deg); opacity: 0; }
+            0% {
+                transform: scale(1) rotate(0deg);
+            }
+
+            50% {
+                transform: scale(1.2) rotate(10deg);
+            }
+
+            100% {
+                transform: scale(0) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         .ticket-card {
@@ -460,7 +583,7 @@
             border: 2px solid #ffd700;
             border-radius: 25px;
             padding: 40px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3), 0 0 30px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 215, 0, 0.2);
             margin: 20px auto;
             max-width: 550px;
             opacity: 0;
@@ -513,21 +636,38 @@
         }
 
         @keyframes fly {
-            0%, 100% { transform: translateX(0) rotate(0deg); }
-            50% { transform: translateX(15px) rotate(5deg); }
+
+            0%,
+            100% {
+                transform: translateX(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateX(15px) rotate(5deg);
+            }
         }
 
         @keyframes wave {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(5deg); }
-            75% { transform: rotate(-5deg); }
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(5deg);
+            }
+
+            75% {
+                transform: rotate(-5deg);
+            }
         }
 
         .ticket-title {
             font-size: 1.8em;
             color: #1a1a40;
             font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
             line-height: 1.2;
         }
 
@@ -541,10 +681,23 @@
         }
 
         @keyframes morph {
-            0%, 100% { transform: scale(1) rotateY(0deg); }
-            25% { transform: scale(1.1) rotateY(5deg); }
-            50% { transform: scale(1.05) rotateY(-5deg); }
-            75% { transform: scale(1.1) rotateY(5deg); }
+
+            0%,
+            100% {
+                transform: scale(1) rotateY(0deg);
+            }
+
+            25% {
+                transform: scale(1.1) rotateY(5deg);
+            }
+
+            50% {
+                transform: scale(1.05) rotateY(-5deg);
+            }
+
+            75% {
+                transform: scale(1.1) rotateY(5deg);
+            }
         }
 
         .journey-visual {
@@ -557,13 +710,13 @@
             background: linear-gradient(45deg, #4169e1, #6495ed);
             border-radius: 20px;
             color: white;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
         .city {
             font-size: 1.8em;
             font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .arrow {
@@ -573,8 +726,15 @@
         }
 
         @keyframes bounce {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(8px); }
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(8px);
+            }
         }
 
         .countdown-container {
@@ -584,7 +744,7 @@
             padding: 25px;
             margin: 25px 0;
             color: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3), 0 0 20px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 215, 0, 0.2);
             opacity: 0;
             transform: translateY(20px);
             display: none;
@@ -619,11 +779,11 @@
 
         .countdown-item {
             text-align: center;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 10px;
             padding: 12px 8px;
             backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .countdown-number {
@@ -643,12 +803,12 @@
 
         .countdown-seconds {
             text-align: center;
-            background: rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.3);
             border-radius: 15px;
             padding: 15px;
             margin-top: 10px;
             backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.4);
         }
 
         .countdown-seconds .countdown-number {
@@ -695,11 +855,25 @@
             filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
         }
 
-        .emoji:nth-child(1) { animation-delay: 0s; }
-        .emoji:nth-child(2) { animation-delay: 0.2s; }
-        .emoji:nth-child(3) { animation-delay: 0.4s; }
-        .emoji:nth-child(4) { animation-delay: 0.6s; }
-        .emoji:nth-child(5) { animation-delay: 0.8s; }
+        .emoji:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .emoji:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .emoji:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .emoji:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        .emoji:nth-child(5) {
+            animation-delay: 0.8s;
+        }
 
         .surprise-btn {
             background: linear-gradient(45deg, #4169e1, #6495ed);
@@ -711,7 +885,7 @@
             border-radius: 25px;
             cursor: pointer;
             margin: 10px 5px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2), 0 0 15px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 15px rgba(255, 215, 0, 0.2);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -725,7 +899,7 @@
             left: 50%;
             width: 0;
             height: 0;
-            background: rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             transform: translate(-50%, -50%);
             transition: width 0.3s ease, height 0.3s ease;
@@ -738,7 +912,7 @@
 
         .surprise-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3), 0 0 25px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 25px rgba(255, 215, 0, 0.4);
         }
 
         .continue-btn {
@@ -751,7 +925,7 @@
             border-radius: 50px;
             cursor: pointer;
             margin-top: 25px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3), 0 0 20px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 215, 0, 0.3);
             transition: all 0.3s ease;
             opacity: 0;
             display: none;
@@ -765,7 +939,7 @@
 
         .continue-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.4), 0 0 30px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 215, 0, 0.5);
         }
 
         /* Modal Styles */
@@ -794,17 +968,29 @@
             overflow-y: auto;
             position: relative;
             animation: slideIn 0.3s ease-out;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3), 0 0 30px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 215, 0, 0.2);
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .close {
@@ -852,7 +1038,7 @@
 
         .detail-item:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             border-color: #4169e1;
         }
 
@@ -882,38 +1068,38 @@
             .title {
                 font-size: 2em;
             }
-            
+
             .gift-box {
                 width: 150px;
                 height: 150px;
             }
-            
+
             .flight-details {
                 grid-template-columns: 1fr;
             }
-            
+
             .journey-visual {
                 flex-direction: column;
                 gap: 15px;
             }
-            
+
             .city {
                 font-size: 1.5em;
             }
-            
+
             .countdown-display {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 8px;
             }
-            
+
             .countdown-number {
                 font-size: 1.5em;
             }
-            
+
             .countdown-item {
                 padding: 10px 5px;
             }
-            
+
             .modal-content {
                 margin: 10% auto;
                 padding: 20px;
@@ -921,6 +1107,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Preloader -->
     <div class="preloader" id="preloader">
@@ -936,22 +1123,15 @@
     <!-- Particelle fluttuanti -->
     <div class="floating-particles" id="floatingParticles"></div>
 
-    <div class="container">
+    <div class="container" id="mainContainer">
         <div id="gift-screen">
             <h1 class="title">Buon Compleanno Amore <span class="heart">❤️</span></h1>
-            
+
             <div class="gift-box" id="giftBox">
                 <div class="box">
                     <div class="ribbon-horizontal"></div>
                     <div class="ribbon-vertical"></div>
-                    <div class="bow" id="bow">
-                        <div class="drag-hint">🎁 Tira il fiocco!</div>
-                        <div class="drag-arrow">⬆️</div>
-                        <div class="hand-pointer">👆</div>
-                    </div>
-                    <div class="gift-instruction">
-                        🎀 Trascina il fiocco verso l'alto per aprire
-                    </div>
+                    <div class="bow"></div>
                     <div class="sparkles">
                         <div class="sparkle" style="top: 15%; left: 15%; animation-delay: 0s;"></div>
                         <div class="sparkle" style="top: 25%; right: 15%; animation-delay: 0.5s;"></div>
@@ -962,10 +1142,8 @@
                     </div>
                 </div>
             </div>
-            
-            <div style="margin-top: 40px; color: #ffd700; font-size: 1.1em; text-shadow: 0 0 15px #ffd700;">
-                ✨ Il tuo regalo ti aspetta... ✨
-            </div>
+
+            <button class="open-btn" id="openBtn">🎁 Apri il regalo</button>
         </div>
 
         <div class="ticket-card" id="ticketCard">
@@ -974,9 +1152,9 @@
                 <div class="argentina-flag">🇦🇷</div>
                 <div class="ticket-title">Ce ne andiamo in<br>ARGENTINA!</div>
             </div>
-            
+
             <div class="morphing-text">ARGENTINA</div>
-            
+
             <div class="journey-visual">
                 <div class="city">Milano 🇮🇹</div>
                 <div class="arrow">→</div>
@@ -1008,10 +1186,10 @@
                     <span class="countdown-label">Secondi</span>
                 </div>
             </div>
-            
+
             <div class="info-section">
                 <div class="info-text">
-                    🌟 <strong>16 giorni</strong> tra ghiacciai della Patagonia, montagne, 
+                    🌟 <strong>16 giorni</strong> tra ghiacciai della Patagonia, montagne,
                     vigneti del nord e tango argentino!
                 </div>
                 <div class="emoji-row">
@@ -1022,12 +1200,12 @@
                     <span class="emoji">❄️</span>
                 </div>
             </div>
-            
+
             <div style="margin: 20px 0;">
                 <button class="surprise-btn" id="detailsBtn">📋 Dettagli del Volo</button>
                 <button class="surprise-btn" id="highlightsBtn">🎯 Highlights del Viaggio</button>
             </div>
-            
+
             <button class="continue-btn" id="continueBtn">🗺️ Scopri il viaggio</button>
         </div>
     </div>
@@ -1040,7 +1218,7 @@
                 <div class="modal-title">✈️ Dettagli del Volo</div>
                 <div style="color: #666; font-size: 0.9em;">Il nostro viaggio da sogno</div>
             </div>
-            
+
             <div class="flight-details">
                 <div class="detail-item">
                     <div class="detail-label">🛫 PARTENZA</div>
@@ -1067,7 +1245,7 @@
                     <div class="detail-value">Inclusi</div>
                 </div>
             </div>
-            
+
             <div style="text-align: center; margin-top: 20px; color: #666; font-style: italic;">
                 Codice prenotazione: AGUTMO 🎫
             </div>
@@ -1082,24 +1260,24 @@
                 <div class="modal-title">🎯 Highlights del Viaggio</div>
                 <div style="color: #666; font-size: 0.9em;">Le nostre avventure</div>
             </div>
-            
+
             <div style="text-align: left; line-height: 1.8;">
                 <p style="margin: 15px 0;"><strong>🏔️ Patagonia Epica:</strong><br>
-                Ghiacciaio Perito Moreno, Fitz Roy, Torres del Paine</p>
-                
+                    Ghiacciaio Perito Moreno, Fitz Roy, Torres del Paine</p>
+
                 <p style="margin: 15px 0;"><strong>🍷 Wine Experience:</strong><br>
-                Salta, Cafayate, degustazioni di Torrontés</p>
-                
+                    Salta, Cafayate, degustazioni di Torrontés</p>
+
                 <p style="margin: 15px 0;"><strong>💃 Buenos Aires:</strong><br>
-                Tango, asado, cultura argentina autentica</p>
-                
+                    Tango, asado, cultura argentina autentica</p>
+
                 <p style="margin: 15px 0;"><strong>🚗 Road Trip:</strong><br>
-                Libertà totale con auto a noleggio</p>
-                
+                    Libertà totale con auto a noleggio</p>
+
                 <p style="margin: 15px 0;"><strong>🦙 Wildlife:</strong><br>
-                Guanachi, condor, nandù nella pampa</p>
+                    Guanachi, condor, nandù nella pampa</p>
             </div>
-            
+
             <div style="text-align: center; margin-top: 20px; font-size: 1.2em;">
                 🌟 Un viaggio che ricorderemo per sempre! 🌟
             </div>
@@ -1113,7 +1291,7 @@
             <div class="modal-header">
                 <div class="modal-title">🚧 Work in Progress</div>
             </div>
-            
+
             <div style="text-align: center; padding: 20px;">
                 <div style="font-size: 4em; margin-bottom: 20px;">⏳</div>
                 <p style="font-size: 1.2em; color: #666; line-height: 1.6; margin-bottom: 15px;">
@@ -1121,7 +1299,7 @@
                 </p>
                 <p style="font-size: 1.1em; color: #888; line-height: 1.6;">
                     Ancora non ho organizzato tutto.<br>
-                    Seguono aggiornamenti! 
+                    Seguono aggiornamenti!
                 </p>
                 <div style="font-size: 2em; margin-top: 20px;">😊✈️</div>
             </div>
@@ -1130,15 +1308,40 @@
 
     <script>
         // Preloader
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             setTimeout(() => {
-                document.getElementById('preloader').classList.add('hidden');
+                const preloader = document.getElementById('preloader');
+                const mainContainer = document.getElementById('mainContainer');
+
+                if (preloader) {
+                    preloader.classList.add('hidden');
+                }
+
+                // Mostra il contenuto principale dopo che il preloader è nascosto
+                setTimeout(() => {
+                    if (mainContainer) {
+                        mainContainer.classList.add('show');
+                    }
+                }, 500);
+            }, 500);
+
+            // Inizia il ciclo di stelle
+            if (typeof createStars === 'function') createStars();
+            setInterval(() => {
+                if (typeof createStars === 'function') createStars();
+            }, 5000);
+
+            // Inizia il ciclo di particelle fluttuanti
+            if (typeof createFloatingParticle === 'function') createFloatingParticle();
+            setInterval(() => {
+                if (typeof createFloatingParticle === 'function') createFloatingParticle();
             }, 2000);
         });
 
-        // Crea stelle di sfondo
+        // Crea stelle
         function createStars() {
             const starsContainer = document.getElementById('stars');
+            if (!starsContainer) return;
             for (let i = 0; i < 200; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
@@ -1154,22 +1357,18 @@
         function createFloatingParticle() {
             const particle = document.createElement('div');
             particle.className = 'particle';
-            
-            // Alterna tra aeroplani e stelle
-            if (Math.random() < 0.3) {
-                particle.classList.add('plane');
+            if (Math.random() > 0.8) {
                 particle.innerHTML = '✈️';
             } else {
                 particle.classList.add('star');
                 particle.innerHTML = '⭐';
             }
-            
             particle.style.left = Math.random() * 100 + '%';
             particle.style.animationDuration = (Math.random() * 5 + 5) + 's';
             particle.style.animationDelay = Math.random() * 2 + 's';
-            
-            document.getElementById('floatingParticles').appendChild(particle);
-            
+
+            document.getElementById('floatingParticles')?.appendChild(particle);
+
             setTimeout(() => {
                 particle.remove();
             }, 10000);
@@ -1177,7 +1376,8 @@
 
         // Elementi DOM
         const giftBox = document.getElementById('giftBox');
-        const bow = document.getElementById('bow');
+        const bow = document.querySelector('.bow');            // selezione via classe
+        const openBtn = document.getElementById('openBtn');        // nuovo riferimento
         const giftScreen = document.getElementById('gift-screen');
         const ticketCard = document.getElementById('ticketCard');
         const continueBtn = document.getElementById('continueBtn');
@@ -1198,211 +1398,109 @@
         let isDragging = false;
         let startY = 0;
         let currentY = 0;
-        let dragThreshold = 50; // pixel da trascinare per aprire
+        const dragThreshold = 50;  // pixel da trascinare per aprire
+        let giftOpened = false;  // flag per evitare aperture multiple
+
+        // Listener click per aprire il regalo
+        openBtn.addEventListener('click', openGift);
 
         // Funzione per aprire il regalo
         function openGift() {
+            if (giftOpened) return;
+            giftOpened = true;
             giftBox.classList.add('gift-opened');
-            
             setTimeout(() => {
                 giftScreen.style.display = 'none';
                 ticketCard.classList.add('show');
                 countdownContainer.classList.add('show');
-                
-                // Avvia il countdown
                 updateCountdown();
                 setInterval(updateCountdown, 1000);
-                
-                setTimeout(() => {
-                    continueBtn.classList.add('show');
-                }, 2000);
+                setTimeout(() => continueBtn.classList.add('show'), 2000);
             }, 1000);
         }
 
         // Event listeners per drag (Desktop)
-        bow.addEventListener('mousedown', function(e) {
+        bow.addEventListener('mousedown', e => {
+            if (giftOpened) return;
             isDragging = true;
             startY = e.clientY;
-            bow.classList.add('dragging');
-            bow.classList.add('pulse');
-            e.preventDefault();
+        });
+        document.addEventListener('mousemove', e => {
+            if (!isDragging || giftOpened) return;
+            currentY = e.clientY - startY;
+            if (currentY > dragThreshold) openGift();
+        });
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
         });
 
-        document.addEventListener('mousemove', function(e) {
-            if (isDragging) {
-                currentY = e.clientY;
-                const deltaY = startY - currentY; // Inverso per trascinare verso l'alto
-                
-                if (deltaY > 0) {
-                    bow.style.transform = `translateX(-50%) translateY(${-deltaY/2}px) scale(${1 + deltaY/200})`;
-                    
-                    // Aggiungi effetto glow progressivo
-                    const glowIntensity = Math.min(deltaY / dragThreshold, 1);
-                    bow.style.filter = `drop-shadow(0 0 ${15 + glowIntensity * 20}px #32cd32)`;
-                    
-                    if (deltaY >= dragThreshold) {
-                        openGift();
-                        isDragging = false;
-                    }
-                }
-            }
-        });
-
-        document.addEventListener('mouseup', function() {
-            if (isDragging) {
-                isDragging = false;
-                bow.classList.remove('dragging');
-                bow.classList.remove('pulse');
-                bow.style.transform = 'translateX(-50%)';
-                bow.style.filter = 'drop-shadow(0 0 15px #32cd32)';
-            }
-        });
-
-        // Event listeners per drag (Mobile)
-        bow.addEventListener('touchstart', function(e) {
+        // Event listeners per drag (Touch)
+        bow.addEventListener('touchstart', e => {
+            if (giftOpened) return;
             isDragging = true;
             startY = e.touches[0].clientY;
-            bow.classList.add('dragging');
-            bow.classList.add('pulse');
-            e.preventDefault();
+        });
+        document.addEventListener('touchmove', e => {
+            if (!isDragging || giftOpened) return;
+            currentY = e.touches[0].clientY - startY;
+            if (currentY > dragThreshold) openGift();
+        });
+        document.addEventListener('touchend', () => {
+            isDragging = false;
         });
 
-        document.addEventListener('touchmove', function(e) {
-            if (isDragging) {
-                currentY = e.touches[0].clientY;
-                const deltaY = startY - currentY;
-                
-                if (deltaY > 0) {
-                    bow.style.transform = `translateX(-50%) translateY(${-deltaY/2}px) scale(${1 + deltaY/200})`;
-                    
-                    const glowIntensity = Math.min(deltaY / dragThreshold, 1);
-                    bow.style.filter = `drop-shadow(0 0 ${15 + glowIntensity * 20}px #32cd32)`;
-                    
-                    if (deltaY >= dragThreshold) {
-                        openGift();
-                        isDragging = false;
-                    }
-                }
-                e.preventDefault();
-            }
-        });
-
-        document.addEventListener('touchend', function() {
-            if (isDragging) {
-                isDragging = false;
-                bow.classList.remove('dragging');
-                bow.classList.remove('pulse');
-                bow.style.transform = 'translateX(-50%)';
-                bow.style.filter = 'drop-shadow(0 0 15px #32cd32)';
-            }
-        });
-
-        // Aggiungi classe ready-to-drag dopo il caricamento
-        setTimeout(() => {
-            giftBox.classList.add('ready-to-drag');
-            bow.classList.add('pulse');
-        }, 3000);
-
+        // Funzione countdown
         function updateCountdown() {
             const now = new Date();
-            const timeDiff = departureDate - now;
-            
-            if (timeDiff > 0) {
-                const months = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 30.44));
-                const days = Math.floor((timeDiff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-                
-                document.getElementById('months').textContent = months;
-                document.getElementById('days').textContent = days;
-                document.getElementById('hours').textContent = hours;
-                document.getElementById('minutes').textContent = minutes;
-                document.getElementById('seconds').textContent = seconds;
+            let diff = departureDate - now;
+            if (diff <= 0) {
+                document.getElementById('countdownContainer').innerHTML = '<p>È arrivato il momento!</p>';
+                return;
             }
+            const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
+            diff %= 1000 * 60 * 60 * 24 * 30;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            diff %= 1000 * 60 * 60 * 24;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            diff %= 1000 * 60 * 60;
+            const minutes = Math.floor(diff / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('months').textContent = months;
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
         }
 
-        // Event listeners
-        detailsBtn.addEventListener('click', function() {
-            flightModal.style.display = 'block';
-        });
+        // Apertura e chiusura modal
+        detailsBtn.addEventListener('click', () => flightModal.style.display = 'block');
+        highlightsBtn.addEventListener('click', () => highlightsModal.style.display = 'block');
+        closeModal.addEventListener('click', () => flightModal.style.display = 'none');
+        closeHighlightsModal.addEventListener('click', () => highlightsModal.style.display = 'none');
+        continueBtn.addEventListener('click', () => comingSoonModal.style.display = 'block');
+        closeComingSoonModal.addEventListener('click', () => comingSoonModal.style.display = 'none');
 
-        highlightsBtn.addEventListener('click', function() {
-            highlightsModal.style.display = 'block';
-        });
-
-        closeModal.addEventListener('click', function() {
-            flightModal.style.display = 'none';
-        });
-
-        closeHighlightsModal.addEventListener('click', function() {
-            highlightsModal.style.display = 'none';
-        });
-
-        closeComingSoonModal.addEventListener('click', function() {
-            comingSoonModal.style.display = 'none';
-        });
-
-        window.addEventListener('click', function(event) {
-            if (event.target === flightModal) {
-                flightModal.style.display = 'none';
-            }
-            if (event.target === highlightsModal) {
-                highlightsModal.style.display = 'none';
-            }
-            if (event.target === comingSoonModal) {
-                comingSoonModal.style.display = 'none';
-            }
-        });
-
-        continueBtn.addEventListener('click', function() {
-            comingSoonModal.style.display = 'block';
-        });
-
-        // Inizializza stelle e particelle
-        createStars();
-        setInterval(createFloatingParticle, 2000);
-
-        // Effetto sparkle migliorato
-        function createSparkle() {
-            const sparkle = document.createElement('div');
-            sparkle.className = 'sparkle';
-            sparkle.style.top = Math.random() * 100 + '%';
-            sparkle.style.left = Math.random() * 100 + '%';
-            sparkle.style.animationDelay = Math.random() * 2 + 's';
-            
-            document.querySelector('.sparkles').appendChild(sparkle);
-            
-            setTimeout(() => {
-                sparkle.remove();
-            }, 2000);
-        }
-
-        setInterval(createSparkle, 800);
-
-        // Effetto scintille al movimento del mouse
-        document.addEventListener('mousemove', function(e) {
-            if (Math.random() < 0.02) {
+        // Sparkles on continue button hover
+        continueBtn.addEventListener('mouseenter', () => {
+            for (let i = 0; i < 15; i++) {
                 const sparkle = document.createElement('div');
-                sparkle.style.position = 'fixed';
-                sparkle.style.left = e.clientX + 'px';
-                sparkle.style.top = e.clientY + 'px';
-                sparkle.style.width = '4px';
-                sparkle.style.height = '4px';
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.width = '6px';
+                sparkle.style.height = '6px';
                 sparkle.style.background = '#ffd700';
                 sparkle.style.borderRadius = '50%';
                 sparkle.style.pointerEvents = 'none';
                 sparkle.style.animation = 'sparkle 1s linear forwards';
                 sparkle.style.zIndex = '9999';
                 sparkle.style.filter = 'drop-shadow(0 0 8px #ffd700)';
-                
                 document.body.appendChild(sparkle);
-                
-                setTimeout(() => {
-                    sparkle.remove();
-                }, 1000);
+                setTimeout(() => sparkle.remove(), 1000);
             }
         });
     </script>
 </body>
+
 </html>
