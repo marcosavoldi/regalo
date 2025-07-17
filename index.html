@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buon Compleanno Amore ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 50%, #ff9ff3 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .title {
+            color: white;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .heart {
+            color: #ffeb3b;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gift-box {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 40px auto;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s forwards;
+        }
+
+        .box {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .box:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .ribbon-horizontal {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 25px;
+            background: linear-gradient(45deg, #e74c3c, #ff6b6b);
+            transform: translateY(-50%);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .ribbon-vertical {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 25px;
+            height: 100%;
+            background: linear-gradient(45deg, #e74c3c, #ff6b6b);
+            transform: translateX(-50%);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .bow {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 35px;
+            background: #27ae60;
+            border-radius: 50px 50px 0 0;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .bow::before,
+        .bow::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 20px;
+            background: #27ae60;
+            border-radius: 50px;
+            top: 7px;
+        }
+
+        .bow::before {
+            left: -20px;
+            transform: rotate(-35deg);
+        }
+
+        .bow::after {
+            right: -20px;
+            transform: rotate(35deg);
+        }
+
+        .sparkles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #ffeb3b;
+            border-radius: 50%;
+            animation: sparkle 2s linear infinite;
+        }
+
+        @keyframes sparkle {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1) rotate(180deg);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0) rotate(360deg);
+            }
+        }
+
+        .open-btn {
+            background: linear-gradient(45deg, #e74c3c, #ff6b6b);
+            border: none;
+            color: white;
+            padding: 18px 35px;
+            font-size: 1.3em;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.5s forwards;
+        }
+
+        .open-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .gift-opened {
+            animation: giftOpen 1s ease-out forwards;
+        }
+
+        @keyframes giftOpen {
+            0% {
+                transform: scale(1) rotate(0deg);
+            }
+
+            50% {
+                transform: scale(1.2) rotate(10deg);
+            }
+
+            100% {
+                transform: scale(0) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .ticket-card {
+            background: white;
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            margin: 20px auto;
+            max-width: 550px;
+            opacity: 0;
+            transform: translateY(50px);
+            display: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ticket-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b6b, #e74c3c, #ff6b6b);
+        }
+
+        .ticket-card.show {
+            display: block;
+            animation: cardAppear 1s ease-out 0.5s forwards;
+        }
+
+        @keyframes cardAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .ticket-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .plane-icon {
+            font-size: 2.5em;
+            animation: fly 2s ease-in-out infinite;
+        }
+
+        .argentina-flag {
+            font-size: 2em;
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        @keyframes fly {
+
+            0%,
+            100% {
+                transform: translateX(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateX(15px) rotate(5deg);
+            }
+        }
+
+        @keyframes wave {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(5deg);
+            }
+
+            75% {
+                transform: rotate(-5deg);
+            }
+        }
+
+        .ticket-title {
+            font-size: 1.8em;
+            color: #e74c3c;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            line-height: 1.2;
+        }
+
+        .destination {
+            font-size: 3em;
+            color: #ff6b6b;
+            font-weight: bold;
+            margin: 25px 0;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .journey-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            margin: 30px 0;
+            padding: 25px;
+            background: linear-gradient(45deg, #ff6b6b, #e74c3c);
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .city {
+            font-size: 1.8em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .arrow {
+            font-size: 2.5em;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(8px);
+            }
+        }
+
+        .info-section {
+            margin: 25px 0;
+            padding: 20px;
+            background: linear-gradient(45deg, #fff5f5, #ffe8e8);
+            border-radius: 15px;
+            border-left: 5px solid #ff6b6b;
+        }
+
+        .info-text {
+            color: #666;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .emoji-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+
+        .emoji {
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .emoji:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .emoji:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .emoji:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .emoji:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        .emoji:nth-child(5) {
+            animation-delay: 0.8s;
+        }
+
+        .details-btn {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            font-size: 1em;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 10px 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .details-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .continue-btn {
+            background: linear-gradient(45deg, #ff6b6b, #e74c3c);
+            border: none;
+            color: white;
+            padding: 18px 35px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            display: none;
+        }
+
+        .continue-btn.show {
+            display: inline-block;
+            animation: fadeInUp 1s ease-out 1s forwards;
+        }
+
+        .continue-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideIn 0.3s ease-out;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #ff6b6b;
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            color: #e74c3c;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .flight-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .detail-item {
+            text-align: center;
+            padding: 15px;
+            background: linear-gradient(45deg, #fff5f5, #ffe8e8);
+            border-radius: 10px;
+            border: 2px solid #ffebee;
+            transition: all 0.3s ease;
+        }
+
+        .detail-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .detail-label {
+            font-weight: bold;
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            font-size: 1.1em;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .countdown-container {
+            background: linear-gradient(135deg, #ff6b6b, #e74c3c);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px 0;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            display: none;
+        }
+
+        .countdown-container.show {
+            display: block;
+            animation: slideInUp 0.8s ease-out 1.5s forwards;
+        }
+
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .countdown-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .countdown-display {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .countdown-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 12px 8px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .countdown-number {
+            font-size: 1.8em;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .countdown-label {
+            font-size: 0.8em;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .heart-float {
+            position: absolute;
+            color: #ff6b6b;
+            font-size: 1.5em;
+            animation: floatUp 3s ease-out forwards;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(0.5);
+            }
+        }
+
+        .excitement-text {
+            font-size: 1.1em;
+            color: #666;
+            margin: 20px 0;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px rgba(255, 107, 107, 0.5);
+            }
+
+            to {
+                text-shadow: 0 0 20px rgba(255, 107, 107, 0.8);
+            }
+        }
+
+        .surprise-btn {
+            background: linear-gradient(45deg, #ff6b6b, #e74c3c);
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            font-size: 1em;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 10px 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .surprise-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease;
+        }
+
+        .surprise-btn:hover::before {
+            width: 100px;
+            height: 100px;
+        }
+
+        .surprise-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .countdown-seconds {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 10px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .countdown-seconds .countdown-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        .countdown-seconds .countdown-label {
+            font-size: 1em;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .countdown-display {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .countdown-number {
+                font-size: 1.5em;
+            }
+
+            .countdown-item {
+                padding: 10px 5px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2em;
+            }
+
+            .gift-box {
+                width: 150px;
+                height: 150px;
+            }
+
+            .flight-details {
+                grid-template-columns: 1fr;
+            }
+
+            .journey-visual {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .city {
+                font-size: 1.5em;
+            }
+
+            .modal-content {
+                margin: 10% auto;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="gift-screen">
+            <h1 class="title">Buon Compleanno Amore <span class="heart">❤️</span></h1>
+
+            <div class="gift-box" id="giftBox">
+                <div class="box">
+                    <div class="ribbon-horizontal"></div>
+                    <div class="ribbon-vertical"></div>
+                    <div class="bow"></div>
+                    <div class="sparkles">
+                        <div class="sparkle" style="top: 15%; left: 15%; animation-delay: 0s;"></div>
+                        <div class="sparkle" style="top: 25%; right: 15%; animation-delay: 0.5s;"></div>
+                        <div class="sparkle" style="bottom: 15%; left: 25%; animation-delay: 1s;"></div>
+                        <div class="sparkle" style="bottom: 25%; right: 25%; animation-delay: 1.5s;"></div>
+                        <div class="sparkle" style="top: 50%; left: 10%; animation-delay: 2s;"></div>
+                        <div class="sparkle" style="top: 60%; right: 10%; animation-delay: 2.5s;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="open-btn" id="openBtn">🎁 Apri il regalo</button>
+        </div>
+
+        <div class="ticket-card" id="ticketCard">
+            <div class="ticket-header">
+                <div class="plane-icon">✈️</div>
+                <div class="argentina-flag">🇦🇷</div>
+                <div class="ticket-title">Ce ne andiamo in<br>ARGENTINA!</div>
+            </div>
+
+            <div class="journey-visual">
+                <div class="city">Milano 🇮🇹</div>
+                <div class="arrow">→</div>
+                <div class="city">Buenos Aires 🇦🇷</div>
+            </div>
+
+            <div class="countdown-container" id="countdownContainer">
+                <div class="countdown-title">⏰ Partenza tra:</div>
+                <div class="countdown-display" id="countdownDisplay">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="months">0</span>
+                        <span class="countdown-label">Mesi</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">0</span>
+                        <span class="countdown-label">Giorni</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">0</span>
+                        <span class="countdown-label">Ore</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">0</span>
+                        <span class="countdown-label">Minuti</span>
+                    </div>
+                </div>
+                <div class="countdown-seconds">
+                    <span class="countdown-number" id="seconds">0</span>
+                    <span class="countdown-label">Secondi</span>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <div class="info-text">
+                    🌟 <strong>16 giorni</strong> tra ghiacciai della Patagonia, montagne,
+                    vigneti del nord e tango argentino!
+                </div>
+                <div class="emoji-row">
+                    <span class="emoji">🏔️</span>
+                    <span class="emoji">🍷</span>
+                    <span class="emoji">💃</span>
+                    <span class="emoji">🦙</span>
+                    <span class="emoji">❄️</span>
+                </div>
+            </div>
+
+            <div style="margin: 20px 0;">
+                <button class="surprise-btn" id="detailsBtn">📋 Dettagli del Volo</button>
+                <button class="surprise-btn" id="highlightsBtn">🎯 Highlights del Viaggio</button>
+            </div>
+
+            <button class="continue-btn" id="continueBtn">🗺️ Scopri il viaggio</button>
+        </div>
+    </div>
+
+    <!-- Modal per i dettagli del volo -->
+    <div id="flightModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <div class="modal-header">
+                <div class="modal-title">✈️ Dettagli del Volo</div>
+                <div style="color: #666; font-size: 0.9em;">Il nostro viaggio da sogno</div>
+            </div>
+
+            <div class="flight-details">
+                <div class="detail-item">
+                    <div class="detail-label">🛫 PARTENZA</div>
+                    <div class="detail-value">27 Febbraio 2026</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">🛬 RITORNO</div>
+                    <div class="detail-value">14 Marzo 2026</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">⏰ DURATA</div>
+                    <div class="detail-value">16 Giorni</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">✈️ COMPAGNIA</div>
+                    <div class="detail-value">LATAM</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">👥 VIAGGIATORI</div>
+                    <div class="detail-value">Marco & Stefania</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">🎒 BAGAGLI</div>
+                    <div class="detail-value">Inclusi</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 20px; color: #666; font-style: italic;">
+                Codice prenotazione: AGUTMO 🎫
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal per gli highlights -->
+    <div id="highlightsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeHighlightsModal">&times;</span>
+            <div class="modal-header">
+                <div class="modal-title">🎯 Highlights del Viaggio</div>
+                <div style="color: #666; font-size: 0.9em;">Le nostre avventure</div>
+            </div>
+
+            <div style="text-align: left; line-height: 1.8;">
+                <p style="margin: 15px 0;"><strong>🏔️ Patagonia Epica:</strong><br>
+                    Ghiacciaio Perito Moreno, Fitz Roy, Torres del Paine</p>
+
+                <p style="margin: 15px 0;"><strong>🍷 Wine Experience:</strong><br>
+                    Salta, Cafayate, degustazioni di Torrontés</p>
+
+                <p style="margin: 15px 0;"><strong>💃 Buenos Aires:</strong><br>
+                    Tango, asado, cultura argentina autentica</p>
+
+                <p style="margin: 15px 0;"><strong>🚗 Road Trip:</strong><br>
+                    Libertà totale con auto a noleggio</p>
+
+                <p style="margin: 15px 0;"><strong>🦙 Wildlife:</strong><br>
+                    Guanachi, condor, nandù nella pampa</p>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- Modal per "Scopri il viaggio" -->
+    <div id="comingSoonModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeComingSoonModal">&times;</span>
+            <div class="modal-header">
+                <div class="modal-title">🚧 Work in Progress</div>
+            </div>
+
+            <div style="text-align: center; padding: 20px;">
+                <div style="font-size: 4em; margin-bottom: 20px;">⏳</div>
+                <p style="font-size: 1.2em; color: #666; line-height: 1.6; margin-bottom: 15px;">
+                    <strong>Abbi pazienza...</strong>
+                </p>
+                <p style="font-size: 1.1em; color: #888; line-height: 1.6;">
+                    Ancora non ho organizzato tutto.<br>
+                    Seguono aggiornamenti!
+                </p>
+                <div style="font-size: 2em; margin-top: 20px;">😊✈️</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <script>
+        const giftBox = document.getElementById('giftBox');
+        const openBtn = document.getElementById('openBtn');
+        const giftScreen = document.getElementById('gift-screen');
+        const ticketCard = document.getElementById('ticketCard');
+        const continueBtn = document.getElementById('continueBtn');
+        const detailsBtn = document.getElementById('detailsBtn');
+        const highlightsBtn = document.getElementById('highlightsBtn');
+        const countdownContainer = document.getElementById('countdownContainer');
+        const flightModal = document.getElementById('flightModal');
+        const highlightsModal = document.getElementById('highlightsModal');
+        const closeModal = document.getElementById('closeModal');
+        const closeHighlightsModal = document.getElementById('closeHighlightsModal');
+        const comingSoonModal = document.getElementById('comingSoonModal');
+        const closeComingSoonModal = document.getElementById('closeComingSoonModal');
+
+        // Data di partenza: 27 Febbraio 2026 alle 12:00
+        const departureDate = new Date(2026, 1, 27, 12, 0, 0); // Mese è 0-indexed
+
+        function updateCountdown() {
+            const now = new Date();
+            const timeDiff = departureDate - now;
+
+            if (timeDiff > 0) {
+                const months = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 30.44));
+                const days = Math.floor((timeDiff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+                document.getElementById('months').textContent = months;
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            } else {
+                document.getElementById('months').textContent = '0';
+                document.getElementById('days').textContent = '0';
+                document.getElementById('hours').textContent = '0';
+                document.getElementById('minutes').textContent = '0';
+                document.getElementById('seconds').textContent = '0';
+            }
+        }
+
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart-float';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.bottom = '0px';
+
+            document.getElementById('floatingHearts').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }
+
+        function showHeartRain() {
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    createFloatingHeart();
+                }, i * 100);
+            }
+        }
+
+        openBtn.addEventListener('click', function () {
+            giftBox.classList.add('gift-opened');
+            openBtn.style.display = 'none';
+
+            setTimeout(() => {
+                giftScreen.style.display = 'none';
+                ticketCard.classList.add('show');
+                countdownContainer.classList.add('show');
+
+                // Avvia il countdown
+                updateCountdown();
+                setInterval(updateCountdown, 1000); // Aggiorna ogni secondo
+
+                setTimeout(() => {
+                    continueBtn.classList.add('show');
+                }, 2000);
+            }, 1000);
+        });
+
+        openBtn.addEventListener('click', function () {
+            giftBox.classList.add('gift-opened');
+            openBtn.style.display = 'none';
+
+            setTimeout(() => {
+                giftScreen.style.display = 'none';
+                ticketCard.classList.add('show');
+
+                setTimeout(() => {
+                    continueBtn.classList.add('show');
+                }, 2000);
+            }, 1000);
+        });
+
+        detailsBtn.addEventListener('click', function () {
+            flightModal.style.display = 'block';
+        });
+
+        highlightsBtn.addEventListener('click', function () {
+            highlightsModal.style.display = 'block';
+        });
+
+        closeModal.addEventListener('click', function () {
+            flightModal.style.display = 'none';
+        });
+
+        closeHighlightsModal.addEventListener('click', function () {
+            highlightsModal.style.display = 'none';
+        });
+
+        closeComingSoonModal.addEventListener('click', function () {
+            comingSoonModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function (event) {
+            if (event.target === flightModal) {
+                flightModal.style.display = 'none';
+            }
+            if (event.target === highlightsModal) {
+                highlightsModal.style.display = 'none';
+            }
+            if (event.target === comingSoonModal) {
+                comingSoonModal.style.display = 'none';
+            }
+        });
+
+        continueBtn.addEventListener('click', function () {
+            comingSoonModal.style.display = 'block';
+        });
+
+        // Effetto sparkle migliorato
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+
+            document.querySelector('.sparkles').appendChild(sparkle);
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }
+
+        // Crea sparkle ogni secondo
+        setInterval(createSparkle, 800);
+
+        // Aggiungi effetto di typing per il testo emozionante
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Effetto casuale di scintille quando si muove il mouse
+        document.addEventListener('mousemove', function (e) {
+            if (Math.random() < 0.02) { // 2% di probabilità
+                const sparkle = document.createElement('div');
+                sparkle.style.position = 'fixed';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                sparkle.style.width = '6px';
+                sparkle.style.height = '6px';
+                sparkle.style.background = '#ffd700';
+                sparkle.style.borderRadius = '50%';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.animation = 'sparkle 1s linear forwards';
+                sparkle.style.zIndex = '9999';
+
+                document.body.appendChild(sparkle);
+
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+
+</html>
